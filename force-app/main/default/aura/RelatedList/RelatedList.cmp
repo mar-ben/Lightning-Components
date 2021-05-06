@@ -1,10 +1,11 @@
 <aura:component implements="flexipage:availableForRecordHome,force:hasRecordId"
 controller="RelatedListComponentController" access="global">
 <aura:attribute name="recordId" type="String" access="public" />
-<aura:attribute name="Object"  type="String" />
-<aura:attribute name="Attributes" type="String" />
-<aura:attribute name="Icon" type="String" />
-<aura:attribute name="Sort" type="String" />
+<aura:attribute name="listName" type="String" />
+<aura:attribute name="object"  type="String" />
+<aura:attribute name="attributes" type="String" />
+<aura:attribute name="icon" type="String" />
+<aura:attribute name="sort" type="String" />
 <aura:attribute name="columns" type="String" />
 <aura:attribute name="records" type="List" />
 <aura:attribute name="label" type="String" />
@@ -12,9 +13,6 @@ controller="RelatedListComponentController" access="global">
 <aura:attribute name="recordCount" type="String" />
 <aura:attribute name="isLoading" type="Boolean" />
 <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
-
-<p>{!v.Object}</p>
-
 
 <article
 class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDesktop"
@@ -29,9 +27,9 @@ class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDeskt
         <span class="uiImage"
           ><lightning:icon
             iconName="{!v.icon}"
-            alternativeText="{!v.headerLabel}"
+            alternativeText="{!v.listName}"
             size="medium (default)"
-            title="{!v.headerLabel}"
+            title="{!v.listName}"
           /> </span></div
     ></div>
     <div class="slds-media__body"
@@ -39,7 +37,7 @@ class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDeskt
         <span
           class="slds-truncate slds-m-right--xx-small"
           title="Contact Point Emails"
-          >{!v.label}</span
+          >{!v.listName}</span
         >
         <aura:if isTrue="{!v.recordCount}">
           <span class="slds-shrink-none slds-m-right--xx-small" title="(2)"
@@ -56,7 +54,7 @@ class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDeskt
 <lightning:datatable
   hideDefaultActions="true"
   showRowNumberColumn="true"
-  keyField="id"
+  keyField="Id"
   data="{! v.records }"
   columns="{! v.columns }"
   onrowaction="{!c.onRowAction}"

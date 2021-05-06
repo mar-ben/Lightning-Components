@@ -2,5 +2,5 @@
 
 These are the few resuable custom aura lightning components.
 
-# Related List Component
+## Related List Component
  

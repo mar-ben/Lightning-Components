@@ -1,10 +1,11 @@
 <design:component>
 
-<design:attribute label="Object" name="Object" datasource="apex://SObjectListController" />
-<design:attribute label="Attributes" name="Attributes" ></design:attribute>
-<design:attribute label="Icon" name="Icon" />
-<design:attribute label="Sort" name="Sort" />
-<design:attribute label="reference" name="referenceAttribute" />
+<design:attribute label="Object" name="object" datasource="apex://SObjectListController" />
+<design:attribute label="List Name" name="listName" />
+<design:attribute label="Attributes" name="attributes" ></design:attribute>
+<design:attribute label="Icon" name="icon" />
+<design:attribute label="Sort" name="sort" />
+<design:attribute label="Reference" name="referenceAttribute" />
 
 
 </design:component>

@@ -74,7 +74,7 @@ public class Response{
         System.debug('objectName='+objectName);
         String objectLabel=getObjectLabel(objectName.trim());
         List<Column> columns=getColumns(objectName,attributes);
-        String soql='select id,';
+        String soql='select id,Name,';
         for (column aColumn : columns){
             soql=soql+aColumn.fieldName +', ';
         }
@@ -99,7 +99,6 @@ public class Response{
     public static String getColumns(String attributes){
     List<String> attributeList=attributes.split(',');
     System.debug(attributeList);
-
     return '';
     }
    
