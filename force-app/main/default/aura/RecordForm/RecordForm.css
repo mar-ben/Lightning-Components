@@ -1,0 +1,13 @@
+.THIS .slds-card {
+
+  padding:12px 12px;
+}
+
+
+
+.THIS .action-container {
+  display: flex;
+  align-items: center;
+  margin :10px auto;
+  justify-content: center;
+}

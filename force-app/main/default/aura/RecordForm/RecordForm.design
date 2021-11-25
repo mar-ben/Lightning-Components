@@ -1,0 +1,8 @@
+<design:component>
+<design:attribute label="Label" name="label" />
+<design:attribute label="Object" name="objectApiName" ></design:attribute>
+<design:attribute label="Attributes" name="attributes" ></design:attribute>
+<design:attribute label="Readonly Attributes" name="readOnlyAttributes" />
+<design:attribute label="Icon" name="icon" />
+	
+</design:component>

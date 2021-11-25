@@ -1,0 +1,193 @@
+<aura:component
+  implements="flexipage:availableForRecordHome,force:hasRecordId"
+  access="global"
+  controller="RecordFormController"
+>
+  <aura:handler name="init" action="{!c.onInit}" value="{!this}" />
+  <aura:attribute name="rows" type="List" />
+  <aura:attribute name="prevState" type="List"/>
+  <aura:attribute name="label" type="String" default="" />
+  <aura:attribute name="isEditMode" type="Boolean" default="false" />
+  <aura:attribute name="recordId" type="String" /> 
+   <aura:attribute name="readOnlyAttributes" type="String" default="" />
+  <aura:attribute name="attributes" type="String" default="" />
+  <aura:attribute name="objectApiName" type="String" default="" />
+  <aura:attribute name="icon" type="String" default="" />
+  <aura:attribute name="isLoading" type="boolean" default="false" />  
+    <aura:if isTrue="{!v.isLoading}">
+     <lightning:spinner alternativeText="Loading" size="small" />
+    </aura:if>
+   <article class="slds-card">
+  <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+      <div class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-standard-account" title="account">
+         <lightning:icon
+            iconName="{!v.icon}"
+            size="small"
+          />
+          <span class="slds-assistive-text">account</span>
+        </span>
+      </div>
+      <div class="slds-media__body">
+        <h2 class="slds-card__header-title">
+            <span>{!v.label}</span>
+         </h2>
+      </div>
+    </header>
+  </div>
+  <div class="slds-card__body slds-card__body_inner">
+        <div class="slds-form" role="list">
+    <aura:if isTrue="{!v.isEditMode}">
+      <aura:iteration items="{!v.rows}" var="row">
+        <div class="slds-form__row">
+          <aura:iteration items="{!row}" var="item">
+            <div class="slds-form__item" role="listitem">
+              <div
+                class="slds-form-element slds-form-element_horizontal slds-is-editing"
+              >
+                <span class="slds-form-element__label">
+                  <!--<abbr class="slds-required" title="required">* </abbr> -->
+                  {!item.label}</span
+                >
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    <aura:if isTrue="{!item.readOnly}">
+                      {!item.value} <aura:set attribute="else">
+                      <aura:if isTrue="{!item.type=='picklist'}">
+                        <lightning:select
+                          name="{item.fieldName}"
+                          variant="label-hidden"
+                          value="{!item.value}"
+                        >
+                          <option value="">choose one...</option>
+                          <aura:iteration
+                            items="{!item.pickList}"
+                            var="pickListItem"
+                          >
+                            <option value="{!pickListItem.value}"
+                              >{!pickListItem.label}</option
+                            >
+                          </aura:iteration>
+                        </lightning:select>
+                      </aura:if>
+                      <aura:if isTrue="{!item.type=='string'}">
+                        <lightning:input
+                          type="text"
+                          name="{!item.fieldName}"
+                          variant="label-hidden"
+                          value="{!item.value}"
+                          maxlength="{!item.maxlength}"
+                        />
+                      </aura:if>
+                      <aura:if isTrue="{!item.type=='phone'}">
+                        <lightning:input
+                          type="phone"
+                          name="{!item.fieldName}"
+                          variant="label-hidden"
+                          value="{!item.value}"
+						        maxlength="{!item.maxlength}"	                          
+                        />
+                      </aura:if>
+
+                      <aura:if isTrue="{!item.type=='boolean'}">
+                        <lightning:input
+                          type="checkbox"
+                          variant="label-hidden"
+                          checked="{!item.value}"
+                        />
+                      </aura:if>
+                       <aura:if isTrue="{!item.type=='encryptedstring'}">
+                        <lightning:input
+                          type="text"
+                          name="{!item.fieldName}"
+                          variant="label-hidden"
+                          value="{!item.value}"
+                          maxlength="{!item.maxlength}"
+                        />
+                      </aura:if>
+                         </aura:set>
+                    </aura:if>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+          </aura:iteration>
+        </div>
+      </aura:iteration>
+      <aura:set attribute="else">
+        <aura:iteration items="{!v.rows}" var="row">
+          <div class="slds-form__row">
+            <aura:iteration items="{!row}" var="item">
+              <div class="slds-form__item" role="listitem">
+                <div
+                  class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal  slds-hint-parent"
+                >
+                  <span class="slds-form-element__label">
+                    <!--<abbr class="slds-required" title="required">* </abbr> -->
+                    {!item.label}</span
+                  >
+                  <div class="slds-form-element__control">
+                    <div class="slds-form-element__static">
+                      <aura:if isTrue="{!item.type=='boolean'}">
+                      
+                            <lightning:input
+                          type="checkbox"
+                          variant="label-hidden"
+                          checked="{!item.value}"
+                          disabled="true"
+                        />
+                      
+                            <aura:set attribute="else">
+                      {!item.value}
+     				</aura:set>
+                          </aura:if>
+                    </div>
+                      
+                      <aura:if isTrue="{!not(item.readOnly)}">
+                    <button
+                      class="slds-button slds-button_icon"
+                      title="Edit: Assigned To"
+                      onclick="{!c.onClickEditHandler}"
+                    >
+                      <lightning:icon
+                        iconName="utility:edit"
+                        alternative-text="edit"
+                        title="edit"
+                        size="xx-small"
+                      ></lightning:icon>
+                    </button>
+                          </aura:if>
+                  </div>
+                </div>
+              </div>
+            </aura:iteration>
+          </div>
+        </aura:iteration>
+      </aura:set>
+    </aura:if>
+  </div></div>
+        <aura:if isTrue="{!v.isEditMode}">
+       <div class="action-container">
+        <lightning:button
+          label="Cancel"
+          title="Cancel"
+          onclick="{!c.handleClickCancel }"/>
+
+        <lightning:button
+          variant="brand"
+          label="Save"
+          title="Save"
+          onclick="{! c.handleClickSave }"
+      /></div>
+            </aura:if>
+       
+</article> 
+    
+ 
+</aura:component>
+
+
+
+
