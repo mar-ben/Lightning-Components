@@ -26,7 +26,7 @@ These are the few resuable custom aura lightning components.
      * Icon
      * Read only attrributes (comma seperated values)
 Configuration:
-![image](https://github.com/mar-ben/Lightning-Components/blob/e3573617ce785ea58241fd0aed5ab5aaa91d4902/recordForm%20config.png = 250px)
+<img src="https://github.com/mar-ben/Lightning-Components/blob/e3573617ce785ea58241fd0aed5ab5aaa91d4902/recordForm%20config.png" align="left" height="48" width="48" >
 View Mode:
 ![image](https://github.com/mar-ben/Lightning-Components/blob/159c55f596b4464239f6c9be7d765b2c4dab3bd5/recordFormComponentView.png)
 Edit Mode 
