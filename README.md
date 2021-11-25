@@ -13,7 +13,7 @@ These are the few resuable custom aura lightning components.
    * Reference filter attribute
    * Sort by
 
-<img src="https://user-images.githubusercontent.com/15126069/117242433-dca28600-adfa-11eb-9381-9b71ba73e7a8.png" height="400" >
+<img src="https://user-images.githubusercontent.com/15126069/117242433-dca28600-adfa-11eb-9381-9b71ba73e7a8.png"  >
 
 
 <hr/>
