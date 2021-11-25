@@ -26,4 +26,5 @@ These are the few resuable custom aura lightning components.
      * Icon
      * Read only attrributes (comma seperated values)
 
+![image](https://github.com/mar-ben/Lightning-Components/blob/159c55f596b4464239f6c9be7d765b2c4dab3bd5/recordFormComponentView.png)
 
